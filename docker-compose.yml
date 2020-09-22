@@ -1,0 +1,30 @@
+version: '3'
+volumes:
+  tmp:
+  mysql-data:
+
+services:
+  app:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - tmp:/tmp/
+      - .:/var/www/ticket_selling_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file:
+      - .env_dev
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env_dev
+    ports:
+      - "3308:3306"
+    stdin_open: true
+    tty: true
+    volumes:
+      - mysql-data:/var/lib/mysql
