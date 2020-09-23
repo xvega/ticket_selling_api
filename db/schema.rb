@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_171836) do
+ActiveRecord::Schema.define(version: 2020_09_23_173353) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2020_09_23_171836) do
     t.time "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.time "valid_time"
+    t.integer "status"
+    t.string "selling_option"
+    t.bigint "ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ticket_id"], name: "index_reservations_on_ticket_id"
   end
 
   create_table "ticket_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -43,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_171836) do
     t.index ["ticket_type_id"], name: "index_tickets_on_ticket_type_id"
   end
 
+  add_foreign_key "reservations", "tickets"
   add_foreign_key "ticket_types", "events"
   add_foreign_key "tickets", "ticket_types"
 end
