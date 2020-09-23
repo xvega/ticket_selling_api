@@ -4,7 +4,7 @@ RSpec.describe TicketType, type: :model do
   context 'validations' do
 
     describe 'when required fields are valid' do
-      it 'successfully creates an event' do
+      it 'successfully creates a ticket type' do
         expect { FactoryBot.create(:ticket_type) }.to change { TicketType.count }.from(0).to(1)
       end
 
