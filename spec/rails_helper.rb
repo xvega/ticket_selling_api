@@ -9,9 +9,9 @@ require 'capybara/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.fixture_path = "#{::Rails.root}/spec/requests"
-  config.use_transactional_fixtures = false
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/requests"
+  config.use_transactional_fixtures = true
   config.before(:suite) { DatabaseCleaner.clean_with(:truncation) }
   config.before(:each) { DatabaseCleaner.strategy = :transaction }
   config.before(:each, :js => true) { DatabaseCleaner.strategy = :truncation }

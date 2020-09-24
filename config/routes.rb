@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   scope module: :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :dummy, only: :index
+      resources :events, only: %i[create index show]
+
+      match '*unmatched', to: 'errors#not_found', via: :all
     end
   end
 end
