@@ -1,0 +1,104 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/v1/events":
+    post:
+      summary: Creates an event
+      tags:
+      - Events
+      parameters: []
+      responses:
+        '200':
+          description: success
+          content: {}
+        '422':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                date:
+                  type: string
+                time:
+                  type: string
+              required:
+              - name
+              - description
+              - date
+              - time
+  "/v1/events/{id}":
+    get:
+      summary: Retrieves an Event
+      tags:
+      - Events
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: event found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  time:
+                    type: string
+                  date:
+                    type: string
+                required:
+                - id
+                - name
+                - description
+                - time
+                - date
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  time:
+                    type: string
+                  date:
+                    type: string
+                required:
+                - id
+                - name
+                - description
+                - time
+                - date
+        '404':
+          description: event not found
+          content: {}
+        '406':
+          description: unsupported accept header
+          content: {}
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
