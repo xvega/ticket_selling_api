@@ -1,9 +1,10 @@
 FactoryBot.define do
   factory :ticket do
+    type { 'VIP' }
     quantity { 3 }
-    ticket_type
-    owner_email { 'owner@mail.com' }
-    owner_name { 'paul' }
+    price { 20.00 }
+    description { 'If you want to spend cash, this is your choice!!' }
     status { 0 }
+    event
   end
 end

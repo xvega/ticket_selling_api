@@ -14,9 +14,9 @@ module Api
       def create
         event = Event.new(event_params)
         if event.save
-          render json: EventSerializer.new(event)
+          render json: EventSerializer.new(event), status: 201
         else
-          json_response(event.errors.messages.to_json, status: 400)
+          json_response(event.errors.messages.to_json, status: 422)
         end
       end
 

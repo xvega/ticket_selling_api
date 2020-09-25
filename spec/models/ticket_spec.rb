@@ -6,12 +6,12 @@ RSpec.describe Ticket, type: :model do
       expect { FactoryBot.create(:ticket) }.to change { Ticket.count }.from(0).to(1)
     end
 
-    it 'has an ticket type associated' do
-      ticket_type = FactoryBot.create(:ticket_type)
-      ticket = FactoryBot.create(:ticket, ticket_type: ticket_type)
+    it 'has an event associated' do
+      event = FactoryBot.create(:event, name: 'custom event')
+      ticket = FactoryBot.create(:ticket, event: event)
 
-      expect(ticket.ticket_type).to_not be_nil
-      expect(ticket.ticket_type.name).to eq(ticket_type.name)
+      expect(ticket.event).to_not be_nil
+      expect(ticket.event.name).to eq(event.name)
     end
   end
 end

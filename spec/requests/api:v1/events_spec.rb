@@ -16,7 +16,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
           required: [ 'name', 'description', 'date', 'time' ]
       }
 
-      response '200', 'success' do
+      response '201', 'success' do
         let(:event) { { name: 'foo', description: 'bar', date: '2020-09-24', time: '00:00:00' } }
         run_test!
       end
@@ -32,19 +32,17 @@ RSpec.describe 'Api::V1::Events', type: :request do
 
     get 'Retrieves an Event' do
       tags 'Events'
-      produces 'application/json', 'application/xml'
+      produces 'application/json'
       parameter name: :id, in: :path, type: :string
 
       response '200', 'event found' do
         schema type: :object,
                properties: {
-                   id: { type: :integer },
-                   name: { type: :string },
-                   description: { type: :string },
-                   time: { type: :string },
-                   date: { type: :string }
-               },
-               required: [ 'id', 'name', 'description', 'time', 'date' ]
+                 name: { type: :string },
+                 description: { type: :string },
+                 time: { type: :string },
+                 date: { type: :string }
+               }
 
         let(:id) {
           Event.create(name: 'test',
@@ -59,11 +57,6 @@ RSpec.describe 'Api::V1::Events', type: :request do
         let(:id) { 'invalid' }
         run_test!
       end
-
-      response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
-        run_test!
-      end
-      end
+    end
   end
 end

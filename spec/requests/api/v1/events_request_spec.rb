@@ -49,7 +49,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
       it 'returns an error' do
         post '/v1/events', params: invalid_params, headers: headers
         expect(response.content_type).to eq('application/json; charset=utf-8')
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

@@ -11,7 +11,7 @@ paths:
       - Events
       parameters: []
       responses:
-        '200':
+        '201':
           description: success
           content: {}
         '422':
@@ -55,8 +55,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
                   name:
                     type: string
                   description:
@@ -66,27 +64,6 @@ paths:
                   date:
                     type: string
                 required:
-                - id
-                - name
-                - description
-                - time
-                - date
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  time:
-                    type: string
-                  date:
-                    type: string
-                required:
-                - id
                 - name
                 - description
                 - time
