@@ -1,24 +1,29 @@
-# README
+# Ticket Selling API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Dependencies
 
-Things you may want to cover:
+- docker
 
-* Ruby version
+##How to run it?
 
-* System dependencies
+I've taken care of everything, so you have to run the following commands:
 
-* Configuration
+```sh 
+docker-compose build
+docker-compose up
+```
 
-* Database creation
+##How to run tests?
 
-* Database initialization
+```sh 
+docker-compose run app rspec spec/
+```
 
-* How to run the test suite
+##Documentation 
 
-* Services (job queues, cache servers, search engines, etc.)
+Feel free to use your favorite tool for testing the API, e.g: Postman. If you're in a hurry, I've written API docs using rswag gem
 
-* Deployment instructions
+```sh
+localhost:3000/api-docs/
+```
 
-* ...
