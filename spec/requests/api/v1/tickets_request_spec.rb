@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Api::V1::Tickets", type: :request do
 
+  let(:access_token) { FactoryBot.create(:api_key).access_token }
+  let(:headers) do
+    { 'ACCEPT' => 'application/json', 'Authorization': "Bearer #{access_token}" }
+  end
+
   describe 'POST /v1/tickets' do
     
     let(:event_id) { FactoryBot.create(:event).id }

@@ -1,9 +1,14 @@
 require 'swagger_helper'
 
 RSpec.describe 'Api::V1::Events', type: :request do
+
+  let(:access_token) { FactoryBot.create(:api_key).access_token }
+  let(:Authorization) { "Bearer #{access_token}" }
+
   path '/v1/events' do
     post 'Creates an event' do
       tags 'Events'
+      security [{ bearer: [] }]
       consumes 'application/json'
       parameter name: :event, in: :body, schema: {
           type: :object,
@@ -33,6 +38,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
     get 'Retrieves an Event' do
       tags 'Events'
       produces 'application/json'
+      security [bearer: {}]
       parameter name: :id, in: :path, type: :string
 
       response '200', 'event found' do

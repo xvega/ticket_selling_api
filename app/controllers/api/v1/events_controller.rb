@@ -2,6 +2,8 @@ module Api
   module V1
     class EventsController < ApplicationController
 
+      before_action :authenticate!
+
       include Orderable
       include Pagination
       include Filterable

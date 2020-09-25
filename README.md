@@ -1,25 +1,34 @@
 # Ticket Selling API
 
-##Dependencies
+#Dependencies
 
 - docker
 
-##How to run it?
+#How to run it?
 
-I've taken care of everything, so you have to run the following commands:
+I've taken care of mostly everything, so you have to run the following commands:
 
 ```sh 
 docker-compose build
 docker-compose up
 ```
 
-##How to run tests?
+For a couple of endpoints, you need a bearer token. In order to create one, open a new terminal session and run the following commands:
+
+```sh 
+docker-compose run app rails console 
+ApiKey.create!
+```
+
+Then copy the token and add it to your header request
+
+#How to run tests?
 
 ```sh 
 docker-compose run app rspec spec/
 ```
 
-##Documentation 
+#Documentation 
 
 Feel free to use your favorite tool for testing the API, e.g: Postman. If you're in a hurry, I've written API docs using rswag gem
 

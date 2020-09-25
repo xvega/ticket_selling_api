@@ -1,0 +1,213 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/v1/events": {
+      "post": {
+        "summary": "Creates an event",
+        "tags": [
+          "Events"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "event",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "date",
+                "time"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      }
+    },
+    "/v1/events/{id}": {
+      "get": {
+        "summary": "Retrieves an Event",
+        "tags": [
+          "Events"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "bearer": {
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "event found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "event not found"
+          }
+        }
+      }
+    },
+    "/v1/tickets": {
+      "post": {
+        "summary": "Creates a ticket",
+        "tags": [
+          "Tickets"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ticket",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "integer"
+                },
+                "price": {
+                  "type": "float"
+                },
+                "event_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "price",
+                "status",
+                "event_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      },
+      "get": {
+        "summary": "retrieves tickets",
+        "tags": [
+          "Tickets"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://{defaultHost}:3000",
+      "variables": {
+        "defaultHost": {
+          "default": "localhost"
+        }
+      }
+    }
+  ],
+  "securityDefinitions": {
+    "bearer": {
+      "description": "Authorization token for API",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
