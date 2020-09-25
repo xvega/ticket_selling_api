@@ -1,14 +1,14 @@
 module Api
   module V1
     class TicketsController < ApplicationController
-      def index
-        tickets = Ticket.all
-        if tickets
-          render json: tickets
-        else
-          render json: 'No Content', status: 204
-        end
 
+      include Orderable
+      include Pagination
+      include Filterable
+
+      def index
+        tickets = filter_model(Ticket)
+        json_response(tickets, meta: pagination_meta(tickets))
       end
 
       def create

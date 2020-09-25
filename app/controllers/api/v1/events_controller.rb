@@ -2,6 +2,15 @@ module Api
   module V1
     class EventsController < ApplicationController
 
+      include Orderable
+      include Pagination
+      include Filterable
+
+      def index
+        events = filter_model(Event)
+        json_response(events, meta: pagination_meta(events))
+      end
+
       def show
         event = Event.find(params[:id])
         if event
