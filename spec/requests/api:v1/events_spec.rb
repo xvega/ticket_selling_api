@@ -44,12 +44,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
                  date: { type: :string }
                }
 
-        let(:id) {
-          Event.create(name: 'test',
-                       description: 'test desc',
-                       time: '00:00:00',
-                       date: '2020-09-24').id
-          }
+        let(:id) { FactoryBot.create(:event).id }
         run_test!
       end
 

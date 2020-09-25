@@ -45,7 +45,7 @@ RSpec.describe 'Api::V1::Tickets', type: :request do
 
       response '200', 'success' do
         let(:event) { FactoryBot.create(:event) }
-        let(:ticket) { FactoryBot.create(:ticket, event: event) }
+        let(:ticket) { FactoryBot.create(:ticket, event_id: event.id) }
         run_test!
       end
 
