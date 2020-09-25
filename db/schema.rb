@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_173959) do
   end
 
   create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "type"
+    t.string "name"
     t.integer "quantity"
     t.text "description"
     t.integer "status"

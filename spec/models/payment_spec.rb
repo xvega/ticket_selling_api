@@ -7,11 +7,11 @@ RSpec.describe Payment, type: :model do
     end
 
     it 'has a ticket associated' do
-      ticket = FactoryBot.create(:ticket, type: 'normal')
+      ticket = FactoryBot.create(:ticket, name: 'normal')
       payment = FactoryBot.create(:payment, ticket: ticket)
 
       expect(payment.ticket).to_not be_nil
-      expect(payment.ticket.type).to eq(ticket.type)
+      expect(payment.ticket.name).to eq(ticket.name)
     end
   end
 end

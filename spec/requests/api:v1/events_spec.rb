@@ -16,7 +16,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
           required: [ 'name', 'description', 'date', 'time' ]
       }
 
-      response '201', 'success' do
+      response '201', 'created' do
         let(:event) { { name: 'foo', description: 'bar', date: '2020-09-24', time: '00:00:00' } }
         run_test!
       end

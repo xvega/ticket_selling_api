@@ -12,7 +12,7 @@ paths:
       parameters: []
       responses:
         '201':
-          description: success
+          description: created
           content: {}
         '422':
           description: invalid request
@@ -63,19 +63,56 @@ paths:
                     type: string
                   date:
                     type: string
-                required:
-                - name
-                - description
-                - time
-                - date
         '404':
           description: event not found
           content: {}
-        '406':
-          description: unsupported accept header
+  "/v1/tickets":
+    post:
+      summary: Creates a ticket
+      tags:
+      - Tickets
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content: {}
+        '422':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                quantity:
+                  type: integer
+                status:
+                  type: integer
+                price:
+                  type: float
+                event_id:
+                  type: integer
+              required:
+              - name
+              - quantity
+              - price
+              - status
+              - event_id
+    get:
+      summary: retrieves tickets
+      tags:
+      - Tickets
+      responses:
+        '200':
+          description: success
           content: {}
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}:3000
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost
