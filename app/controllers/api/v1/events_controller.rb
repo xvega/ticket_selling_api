@@ -10,24 +10,20 @@ module Api
 
       def index
         events = filter_model(Event)
-        json_response(events, meta: pagination_meta(events))
+        json_response(EventSerializer.new(events), meta: pagination_meta(events))
       end
 
       def show
         event = Event.find(params[:id])
-        if event
-          render json: EventSerializer.new(event)
-        else
-          raise ActiveRecord::RecordNotFound
-        end
+        json_response(EventSerializer.new(event), status: :ok)
       end
 
       def create
         event = Event.new(event_params)
         if event.save
-          render json: EventSerializer.new(event), status: 201
+          json_response(EventSerializer.new(event), status: :created)
         else
-          json_response(event.errors.messages.to_json, status: 422)
+          json_response(event.errors.messages.to_json, status: :unprocessable_entity)
         end
       end
 

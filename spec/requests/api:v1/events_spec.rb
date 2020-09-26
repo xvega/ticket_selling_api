@@ -8,7 +8,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
   path '/v1/events' do
     post 'Creates an event' do
       tags 'Events'
-      security [{ bearer: [] }]
+      security [{ Bearer: [] }]
       consumes 'application/json'
       parameter name: :event, in: :body, schema: {
           type: :object,
@@ -38,7 +38,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
     get 'Retrieves an Event' do
       tags 'Events'
       produces 'application/json'
-      security [bearer: {}]
+      security [Bearer: {}]
       parameter name: :id, in: :path, type: :string
 
       response '200', 'event found' do
@@ -56,6 +56,26 @@ RSpec.describe 'Api::V1::Events', type: :request do
 
       response '404', 'event not found' do
         let(:id) { 'invalid' }
+        run_test!
+      end
+    end
+  end
+
+  path '/v1/events/' do
+    get 'Retrieves a list of events' do
+      tags 'Events'
+      produces 'application/json'
+      security [Bearer: {}]
+
+      response '200', 'events found' do
+        schema type: :object,
+               properties: {
+                   name: { type: :string },
+                   description: { type: :string },
+                   time: { type: :string },
+                   date: { type: :string }
+               }
+
         run_test!
       end
     end

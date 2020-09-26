@@ -33,11 +33,11 @@ RSpec.configure do |config|
         }
       ],
       securityDefinitions: {
-        bearer: {
-          description: 'Authorization token for API',
-          type: :apiKey,
-          name: :Authorization,
-          in: :header
+        Bearer: {
+        description: 'Authorization token for API',
+        type: :apiKey,
+        name: 'Authorization',
+        in: :header
         }
       }
     }

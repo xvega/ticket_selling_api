@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_103026) do
     t.string "name"
     t.text "description"
     t.date "date"
-    t.time "time"
+    t.datetime "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

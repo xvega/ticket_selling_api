@@ -13,7 +13,7 @@
         ],
         "security": [
           {
-            "bearer": [
+            "Bearer": [
 
             ]
           }
@@ -71,7 +71,7 @@
         ],
         "security": [
           {
-            "bearer": {
+            "Bearer": {
             }
           }
         ],
@@ -106,6 +106,45 @@
           },
           "404": {
             "description": "event not found"
+          }
+        }
+      }
+    },
+    "/v1/events/": {
+      "get": {
+        "summary": "Retrieves a list of events",
+        "tags": [
+          "Events"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "events found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -203,7 +242,7 @@
     }
   ],
   "securityDefinitions": {
-    "bearer": {
+    "Bearer": {
       "description": "Authorization token for API",
       "type": "apiKey",
       "name": "Authorization",

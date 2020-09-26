@@ -9,7 +9,7 @@ RSpec.describe 'Api::V1::Tickets', type: :request do
     post 'Creates a ticket' do
       tags 'Tickets'
       consumes 'application/json'
-      security [bearer: {}]
+      security [Bearer: {}]
       parameter name: :ticket, in: :body, schema: {
           type: :object,
           properties: {
@@ -47,7 +47,7 @@ RSpec.describe 'Api::V1::Tickets', type: :request do
     get 'retrieves tickets' do
       tags 'Tickets'
       consumes 'application/json'
-      security [bearer: {}]
+      security [Bearer: {}]
 
       response '200', 'success' do
         let(:event) { FactoryBot.create(:event) }

@@ -10,15 +10,21 @@ module Api
 
       def index
         tickets = filter_model(Ticket)
-        json_response(tickets, meta: pagination_meta(tickets))
+        json_response(TicketSerializer.new(tickets), meta: pagination_meta(tickets))
+      end
+
+      def show
+        # this will filter by events not by ticket
+        tickets = Ticket.by_event(params[:id])
+        json_response(TicketSerializer.new(tickets), status: :ok)
       end
 
       def create
         ticket = Ticket.new(ticket_params)
         if ticket.save
-          render json: TicketSerializer.new(ticket), status: 201
+          json_response(TicketSerializer.new(ticket), status: :created)
         else
-          json_response(ticket.errors.messages.to_json, status: 422)
+          json_response(ticket.errors.messages.to_json, status: :unprocessable_entity)
         end
       end
 
