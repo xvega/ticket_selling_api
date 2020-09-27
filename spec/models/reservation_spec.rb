@@ -7,7 +7,7 @@ RSpec.describe Reservation, type: :model do
     end
 
     it 'has a ticket associated' do
-      ticket = FactoryBot.create(:ticket, name: 'normal')
+      ticket = FactoryBot.create(:ticket, name: 'normal', quantity: 20)
       reservation = FactoryBot.create(:reservation, ticket: ticket)
 
       expect(reservation.ticket).to_not be_nil

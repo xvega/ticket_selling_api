@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :dummy, only: :index
       resources :events, only: %i[create index show]
       resources :tickets, only: %i[create index show]
+      resources :reservations, only: %i[create index show]
 
       match '*unmatched', to: 'errors#not_found', via: :all
     end

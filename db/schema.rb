@@ -38,9 +38,12 @@ ActiveRecord::Schema.define(version: 2020_09_25_103026) do
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.time "valid_time"
-    t.integer "status"
-    t.string "selling_option"
+    t.datetime "valid_until"
+    t.integer "status", default: 0
+    t.integer "selling_option"
+    t.string "email"
+    t.integer "quantity"
+    t.float "to_be_paid"
     t.bigint "ticket_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_103026) do
     t.string "name"
     t.integer "quantity"
     t.text "description"
-    t.integer "status"
+    t.integer "status", default: 0
     t.float "price"
     t.bigint "event_id"
     t.datetime "created_at", precision: 6, null: false

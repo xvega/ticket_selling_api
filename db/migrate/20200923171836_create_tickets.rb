@@ -4,7 +4,7 @@ class CreateTickets < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :quantity
       t.text :description
-      t.integer :status
+      t.integer :status, default: 0
       t.float :price
       t.references :event, foreign_key: true, index: true
 
