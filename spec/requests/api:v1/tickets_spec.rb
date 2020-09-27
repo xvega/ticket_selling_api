@@ -43,8 +43,34 @@ RSpec.describe 'Api::V1::Tickets', type: :request do
     end
   end
 
+  path '/v1/tickets/{id}' do
+
+    get 'Retrieves a ticket' do
+      tags 'Tickets'
+      produces 'application/json'
+      security [Bearer: {}]
+      parameter name: :id, in: :path, type: :string
+
+      response '200', 'ticket found' do
+        schema type: :object,
+               properties: {
+                   name: { type: :string },
+                   description: { type: :string },
+                   quantity: { type: :integer },
+                   status: { type: :integer },
+                   price: { type: :float },
+                   event_id: { type: :integer }
+               }
+
+        let(:id) { FactoryBot.create(:event).id }
+        run_test!
+      end
+    end
+  end
+
+
   path '/v1/tickets' do
-    get 'retrieves tickets' do
+    get 'Retrieves tickets' do
       tags 'Tickets'
       consumes 'application/json'
       security [Bearer: {}]
