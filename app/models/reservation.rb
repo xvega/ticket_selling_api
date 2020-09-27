@@ -23,17 +23,14 @@ class Reservation < ApplicationRecord
   end
 
   def available_tickets
-  byebug
     available_purchasable('Ticket', purchasable_params)
   end
 
   def update_tickets
-  byebug
     update_quantity('Ticket', purchasable_params)
   end
 
   def calculate_to_be_paid
-  byebug
     self.to_be_paid = calculate_total('Ticket', purchasable_params)
   end
 

@@ -2,7 +2,6 @@ module Purchasable
   extend ActiveSupport::Concern
 
   def available_purchasable(klass, params)
-  byebug
     klass.constantize.available_per_type(params[:purchasable_id])
   end
 
