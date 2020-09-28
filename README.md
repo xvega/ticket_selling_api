@@ -36,3 +36,8 @@ Feel free to use your favorite tool for testing the API, e.g: Postman. If you're
 localhost:3000/api-docs/
 ```
 
+It's important to note that you should authenticate before making requests in the above link.
+
+For that, it's necessary that you have an ApiKey, in swagger there's a button on the right upper corner `Authorize`,
+click the button and add the following `Bearer TOKEN`, replace TOKEN with your own token. Then close the modal and enjoy
+testing the API.
