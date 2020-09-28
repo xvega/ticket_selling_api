@@ -149,6 +149,55 @@
         }
       }
     },
+    "/v1/payments": {
+      "post": {
+        "summary": "Creates a payment",
+        "tags": [
+          "Payments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "payment",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "email",
+                "amount"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      }
+    },
     "/v1/reservations": {
       "post": {
         "summary": "Creates a reservation",

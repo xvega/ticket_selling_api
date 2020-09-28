@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_103026) do
     t.float "amount"
     t.string "token"
     t.string "currency"
+    t.string "email"
     t.bigint "ticket_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

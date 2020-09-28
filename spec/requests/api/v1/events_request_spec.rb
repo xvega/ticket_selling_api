@@ -13,7 +13,7 @@ RSpec.describe 'Api::V1::Events', type: :request do
       {'name'=>'test_name',
        'description'=>'desc',
        'date'=>'2020-09-24',
-       'time'=>'2020-09-24T07:00:00.000Z'
+       'time'=>'2020-09-24T07:00:00.000+02:00'
       }
     end
 

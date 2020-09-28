@@ -25,7 +25,7 @@ RSpec.describe 'Api::V1::Reservations', type: :request do
         let(:ticket) { FactoryBot.create(:ticket) }
         let(:reservation) do
           { email: 'ringo@beatles.com',
-            quantity: 2,
+            quantity: ticket.quantity,
             selling_option: 1,
             ticket_id: ticket.id }
         end
