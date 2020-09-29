@@ -5,7 +5,7 @@ class Ticket < ApplicationRecord
 
   scope :by_event, ->(event_id) { self.where(event_id: event_id) }
   scope :find_price, ->(id) { self.find_by(id: id)&.price }
-  scope :available_per_type, ->(id) { self.find_by(id: id)&.quantity }
+  scope :available_per_type, ->(id) { self.find_by(id: id)&.quantity.to_i }
 
   def self.update_available_tickets(id, sub_amount)
     ticket = Ticket.find_by(id: id)

@@ -79,4 +79,34 @@ RSpec.describe 'Api::V1::Events', type: :request do
       end
     end
   end
+
+  describe 'GET /v1/events/' do
+
+    describe 'when records exist' do
+
+      let!(:event_1) { FactoryBot.create(:event) }
+      let!(:event_2) { FactoryBot.create(:event) }
+      let!(:event_3) { FactoryBot.create(:event) }
+
+      it 'returns events' do
+        get "/v1/events/", headers: headers
+        expect(JSON.parse(response.body)).to_not be_empty
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body)['data'].count).to eq(3)
+      end
+    end
+
+    describe 'when there are no records' do
+
+      it 'returns an empty array' do
+        get "/v1/events/", headers: headers
+        expect(JSON.parse(response.body)).to_not be_empty
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body)['data'].count).to eq(0)
+        expect(JSON.parse(response.body)['data']).to be_empty
+      end
+    end
+  end
 end
