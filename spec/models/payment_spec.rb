@@ -32,7 +32,7 @@ RSpec.describe Payment, type: :model do
       end
     end
 
-    describe 'when requierd fields are not valid' do
+    describe 'when required fields are not valid' do
       it 'does not create a payment when reservation is invalid' do
         allow(invalid_payment).to receive(:reservation).and_return(stub_reservation)
         allow(stub_reservation).to receive(:retrieve_amount).and_return(nil)

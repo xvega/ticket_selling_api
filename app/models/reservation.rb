@@ -26,6 +26,8 @@ class Reservation < ApplicationRecord
   private
 
   def check_selling_option
+    return if self.quantity.nil? || self.selling_option.nil?
+
     case self.selling_option
     when 'even'
       if self.quantity % 2 != 0
