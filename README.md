@@ -28,6 +28,12 @@ Then copy the token and add it to your header request
 docker-compose run app rspec spec/
 ```
 
+#How to use extra params?
+
+- `?limit=NUMBER`   for instance `localhost/v1/events?limit=3`
+- `?page=NUMBER`    for instance `localhost/v1/events?page=2`
+- `?sort=ATTRIBUTE` for instance `localhost/v1/events?sort=name` or `localhost/v1/events?sort=-name`
+
 #Documentation 
 
 Feel free to use your favorite tool for testing the API, e.g: Postman. If you're in a hurry, I've written API docs using rswag gem
@@ -64,7 +70,7 @@ My assumptions for the `backend` are the following:
 
 - Any kind of authentication is expected, in my case, I'm using a `Bearer token`
 - Pagination, sort and limit, are extra params that can be added to GET requests, in order to provide users
-a fast API.
+a fast API. 
 - I decided to create a `ticket` that holds a value `name` which works as a type, for instance, `VIP`, `normal`, anything.
 and at the same time, a ticket can hold information such as `quantity` and `price`. I thought there is no need to create 
 records that match the amount of tickets that we create per event.
